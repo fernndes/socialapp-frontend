@@ -1,6 +1,6 @@
 # Social App
 
-Este projeto tem como objetivo desenvolver uma plataforma ficticia na qual pessoas podem criar um perfil púlico e realizar postagens, tal como no Twitter.
+Este projeto tem como objetivo desenvolver uma plataforma fictícia na qual pessoas podem criar um perfil púlico e realizar postagens, tal como no Twitter.
 
 ## Imagens
 

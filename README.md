@@ -2,6 +2,21 @@
 
 Este projeto tem como objetivo desenvolver uma plataforma fictícia na qual pessoas podem criar um perfil público e realizar postagens, tal como no Twitter.
 
+## Fluxo básico
+
+Inicial:
+- Cadastrar usuário ou Autenticar usuário
+
+Dado o acesso o usuário poderá:
+- Visualizar todas as postagens
+- Editar o próprio perfil
+- Curtir ou descurtir uma postagem
+- Criar uma postagem
+- Deletar uma postagem própria
+- Comentar uma postagem
+- Visualizar perfil e postagens de outros usuários
+- Sair
+
 ## Tecnologias :rocket: 
 
 <table border="0">

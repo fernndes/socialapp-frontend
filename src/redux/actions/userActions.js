@@ -3,6 +3,13 @@ import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, LOADING_USER, SET_UNAUT
 
 import api from '../../services/api'
 
+let axiosConfig = {
+    headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        "Access-Control-Allow-Origin": "*",
+    }
+  };
+
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI })
     api.post('/login', userData)
@@ -43,7 +50,7 @@ export const getUserData = () => (dispatch) => {
 
 export const signupUser = (newUserData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI })
-    api.post('/signup', newUserData)
+    api.post('/signup', newUserData, axiosConfig)
         .then((res) => {
             setAuthorizationHeader(res.data.token)
             dispatch(getUserData())

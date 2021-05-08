@@ -4,9 +4,12 @@ import 'dotenv'
 const port = ""
 
 const instance = axios.create({
-    baseURL: process.env.REACT_APP_URL
+    baseURL: process.env.REACT_APP_URL,
+    withCredentials: false,
+    headers: {
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    }
 })
-
-instance.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 
 export default instance

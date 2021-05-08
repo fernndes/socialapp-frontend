@@ -7,4 +7,6 @@ const instance = axios.create({
     baseURL: process.env.REACT_APP_URL
 })
 
+instance.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+
 export default instance

@@ -38,13 +38,30 @@ function LoginScreen(props) {
             email: email,
             password: password
         }
-        
-        props.loginUser(data, history)
+
+        let errorsFields = validateField(data)
+
+        if(Object.keys(errorsFields).length === 0) {
+            props.loginUser(data, history)
+        }      
     }
 
     useEffect(() => {
+        setErrors([])
         setErrors(props.ui.loginErrors)
+        console.log(errors)
     }, [props.ui.loginErrors])
+
+    function validateField(data) {
+        let fieldErrors = {};
+        if(data.password.length < 8 || data.password.length > 30) {
+            fieldErrors['password'] = { field: 'password', text: 'Field should have a minimum length of 8 and max of 30' }
+        }
+        if(data.email.length < 1) {
+            fieldErrors['email'] = { field: 'email', text: 'Field should not be empty' }
+        }
+        return fieldErrors
+    }
 
     return (
         <Grid container className={classes.form}>
@@ -55,8 +72,8 @@ function LoginScreen(props) {
                     Log in to your account
                 </Typography>
                 <form noValidate onSubmit={handleSubmit}>
-                    <TextField id="email" name="email" type="email" variant="outlined" label="Email" className={classes.textField} value={email} onChange={(event) => setEmail(event.target.value)} fullWidth helperText={ (errors && errors.validation) || (errors && errors.general) ? 'Email or password is wrong, please try again' : void (0)} error={(errors && errors.validation) || (errors && errors.general) ? true : false} autoComplete="off" />
-                    <TextField id="password" name="password" type="password" variant="outlined" label="Password" className={classes.textField} value={password} onChange={(event) => setPassword(event.target.value)} helperText={(errors && errors.validation) || (errors && errors.general) ? 'Email or password is wrong, please try again' : void (0)} error={(errors && errors.validation) || (errors && errors.general) ? true : false} fullWidth autoComplete="off" />
+                    <TextField id="email" name="email" type="email" variant="outlined" label="Email" className={classes.textField} value={email} onChange={(event) => setEmail(event.target.value)} fullWidth helperText={ (errors && errors.validation) || (errors && errors.general) ? 'Email or password is wrong, please try again' : void (0)} error={(errors && errors.validation) || (errors && errors.general) ? true : false} autoComplete="off" inputProps={{ minLength: 1 }} />
+                    <TextField id="password" name="password" type="password" variant="outlined" label="Password" className={classes.textField} value={password} onChange={(event) => setPassword(event.target.value)} helperText={(errors && errors.validation) || (errors && errors.general) ? 'Email or password is wrong, please try again' : void (0)} error={(errors && errors.validation) || (errors && errors.general) ? true : false} fullWidth autoComplete="off" inputProps={{ minLength: 8, maxLength: 30 }}/>
                     {!loading ? (
                         <Button type="submit" variant="contained" color="primary" className={classes.button} fullWidth disabled={loading}>Login</Button>
                     ) : (

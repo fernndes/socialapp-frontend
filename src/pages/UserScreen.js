@@ -36,7 +36,7 @@ function UserScreen(props) {
             setProfile(res.data.user)
         })
         .catch(err => {
-            console.log(err)
+            
         })
     }, [])
 

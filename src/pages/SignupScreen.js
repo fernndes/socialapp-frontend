@@ -14,6 +14,7 @@ import { connect } from 'react-redux'
 import { signupUser } from '../redux/actions/userActions'
 
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import { ErrorSharp } from '@material-ui/icons'
 
 const styles = (theme) => ({
     ...theme.group
@@ -40,12 +41,36 @@ function SignupScreen(props) {
             username: username
         }
 
-        props.signupUser(data, history)
+        let errorsFields = validateField(data)
+
+        if(Object.keys(errorsFields).length === 0) {
+            setErrors({})
+            props.signupUser(data, history)
+        } else {
+            setErrors(errorsFields)
+        }
     }
 
     useEffect(() => {
         setErrors(props.ui.errors)
     }, [props.ui.errors])
+
+    function validateField(data) {
+        let fieldErrors = {};
+        if(data.password.length < 8 || data.password.length > 30 ) {
+            fieldErrors['password'] = { field: 'password', text: 'Field should have a minimum length of 8 and max of 30' }
+        }
+        if(data.confirmPassword.length < 8 || data.confirmPassword.length > 30) {
+            fieldErrors['confirmPassword'] = { field: 'confirmPassword', text: 'Field should have a minimum length of 8 and max of 30' }
+        }
+        if(data.username.length < 6 || data.username.length > 12) {
+            fieldErrors['username'] = { field: 'username', text: 'Field should have a minimum length of 6 and max of 12' }
+        }
+        if(data.email.length < 1) {
+            fieldErrors['email'] = { field: 'email', text: 'Field should not be empty' }
+        }
+        return fieldErrors
+    }
 
     return (
         <Grid container className={classes.form}>
@@ -56,10 +81,10 @@ function SignupScreen(props) {
                     Sign up for free
                 </Typography>
                 <form noValidate onSubmit={handleSubmit}>
-                    <TextField id="email" name="email" type="email" label="Email" className={classes.textField} value={email} onChange={(event) => setEmail(event.target.value)} helperText={(errors && errors.validation && errors.validation.body && (errors.validation.body.keys == "email") && errors.validation.body.message) || (errors && errors.error)} error={(errors && errors.validation && errors.validation.body && (errors.validation.body.keys == "email")) || (errors && errors.error) ? true : false} fullWidth required variant="outlined" autoComplete="off" />
-                    <TextField id="password" name="password" type="password" label="Password" className={classes.textField} value={password} onChange={(event) => setPassword(event.target.value)} fullWidth required variant="outlined" helperText={errors && errors.validation && errors.validation.body && (errors.validation.body.keys == "password") &&errors.validation.body.message} error={errors && errors.validation && errors.validation.body && (errors.validation.body.keys == "password") ? true : false} autoComplete="off" />
-                    <TextField id="confirmPassword" name="confirmPassword" type="password" label="Confirm your password" className={classes.textField} value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} fullWidth required variant="outlined" helperText={errors && errors.validation && errors.validation.body && (errors.validation.body.keys == "confirmPassword") && 'Passwords should be equals'} error={errors && errors.validation && errors.validation.body && (errors.validation.body.keys == "confirmPassword") ? true : false} autoComplete="off" />
-                    <TextField id="username" name="username" type="username" label="Username" className={classes.textField} value={username} onChange={(event) => setUsername(event.target.value)} fullWidth required variant="outlined" helperText={errors && errors.validation && errors.validation.body && (errors.validation.body.keys == "username") && errors.validation.body.message} error={errors && errors.validation && errors.validation.body && (errors.validation.body.keys == "username") ? true : false} autoComplete="off" />
+                    <TextField id="email" name="email" type="email" label="Email" className={classes.textField} value={email} onChange={(event) => setEmail(event.target.value)} helperText={errors && (errors.email || errors.error) ? (errors.error ? errors.error : errors.email.text) : void(0)} error={errors && (errors.email || errors.error) ? true : false} fullWidth required={true} variant="outlined" autoComplete="off" inputProps={{ minLength: 1 }}/>
+                    <TextField id="password" name="password" type="password" label="Password" className={classes.textField} value={password} onChange={(event) => setPassword(event.target.value)} fullWidth required variant="outlined" helperText={errors && errors.password ? errors.password.text : void(0)} error={errors && errors.password ? true : false} autoComplete="off" inputProps={{ minLength: 8, maxLength: 30 }}/>
+                    <TextField id="confirmPassword" name="confirmPassword" type="password" label="Confirm your password" className={classes.textField} value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} fullWidth required variant="outlined" helperText={errors && errors.confirmPassword ? errors.confirmPassword.text : void(0)} error={errors && errors.confirmPassword ? true : false} autoComplete="off" inputProps={{ minLength: 8, maxLength: 30 }}/>
+                    <TextField id="username" name="username" type="username" label="Username" className={classes.textField} value={username} onChange={(event) => setUsername(event.target.value)} fullWidth required variant="outlined" helperText={errors && errors.username ? (errors.username.text || errors.username) : void(0)}  error={errors && errors.username ? true : false} autoComplete="off" inputProps={{ minLength: 6, maxLength: 12 }}/>
                     {!loading ? (
                         <Button type="submit" variant="contained" color="primary" className={classes.button} fullWidth disabled={loading}>Signup</Button>
                     ) : (

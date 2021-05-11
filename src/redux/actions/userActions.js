@@ -26,7 +26,6 @@ export const loginUser = (userData, history) => (dispatch) => {
                 type: SET_LOGIN_ERRORS,
                 payload: error.response.data
             })
-            console.log(error)
         })
 }
 
@@ -44,7 +43,7 @@ export const getUserData = () => (dispatch) => {
             })
         })
         .catch(err => {
-            console.log(err)
+            
         })
 }
 
@@ -60,11 +59,11 @@ export const signupUser = (newUserData, history) => (dispatch) => {
             history.push('/')
         })
         .catch((error) => {
+            console.log(error.response.data)
             dispatch({
                 type: SET_ERRORS,
                 payload: error.response.data
             })
-            console.log(error)
         })
 }
 
@@ -92,7 +91,7 @@ export const uploadImage = (formData) => (dispatch) => {
             dispatch(getUserData())
         })
         .catch(err => {
-            console.log(err)
+            
         })
 }
 
@@ -107,6 +106,6 @@ export const editUserDetails = (userDetails) => (dispatch) => {
             dispatch(getUserData())
         })
         .catch(err => {
-            console.log(err)
+            
         })
 }

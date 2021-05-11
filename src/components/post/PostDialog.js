@@ -131,7 +131,6 @@ PostDialog.propTypes = {
     getPost: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
     postId: PropTypes.string.isRequired,
-    userName: PropTypes.string.isRequired
 }
 
 const mapStateToProps = (state) => ({

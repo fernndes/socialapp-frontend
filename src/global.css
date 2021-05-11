@@ -43,3 +43,13 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.card-img {
+  min-width: 200px;
+}
+
+@media (max-width: 500px) {
+  .card-img {
+    min-width: 0px;
+  }
+}

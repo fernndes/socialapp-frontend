@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
@@ -25,13 +25,10 @@ const styles = {
         position: 'relative',
         marginBottom: 20,
     },
-    image: {
-        minWidth: 200
-    },
     content: {
         padding: 25,
         objectFit: 'cover'
-    }
+    },
 }
 
 function Post(props) {
@@ -45,7 +42,7 @@ function Post(props) {
     return (
         <Card className={classes.card}>
             <CardMedia
-                className={classes.image}
+                className="card-img"
                 image={userImg}
                 title="Profile image"
             />

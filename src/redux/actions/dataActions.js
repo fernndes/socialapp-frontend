@@ -34,7 +34,7 @@ export const likePost = (postId) => dispatch => {
             })
         })
         .catch(err => {
-            console.log(err)
+            
         })
 }
 
@@ -51,7 +51,7 @@ export const unlikePost = (postId) => dispatch => {
             })
         })
         .catch(err => {
-            console.log(err)
+            
         })
 }
 
@@ -68,7 +68,7 @@ export const deletePost = (postId) => dispatch => {
             })
         })
         .catch(err => {
-            console.log(err)
+            
         })
 }
 
@@ -119,7 +119,7 @@ export const getPost = (postId) => dispatch => {
             })
         })
         .catch(err => {
-            console.log(err)
+            
         })
 }
 

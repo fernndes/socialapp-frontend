@@ -49,7 +49,6 @@ function LoginScreen(props) {
     useEffect(() => {
         setErrors([])
         setErrors(props.ui.loginErrors)
-        console.log(errors)
     }, [props.ui.loginErrors])
 
     function validateField(data) {

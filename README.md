@@ -2,6 +2,8 @@
 
 Este projeto tem como objetivo desenvolver uma plataforma fictícia na qual pessoas podem criar um perfil público e realizar postagens, tal como no Twitter.
 
+Demo: https://scl-fe.herokuapp.com/
+
 ## Fluxo básico
 
 Inicial:

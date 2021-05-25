@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
 import Post from '../components/post/Post';
 import StaticProfile from '../components/profile/StaticProfile';
+import withStyles from '@material-ui/core/styles/withStyles'
 import Grid from '@material-ui/core/Grid';
 
 import api from '../services/api'
@@ -13,8 +14,19 @@ import { connect } from 'react-redux';
 import { getUserData } from '../redux/actions/dataActions';
 import Navbar from '../components/layout/Navbar'
 
+const styles = (theme) => ({
+    ...theme.group,
+    spacing: {
+        padding: '2rem 4rem',
+        ['@media (max-width: 850px)']: { // eslint-disable-line no-useless-computed-key
+            padding: '1rem',
+        }
+    }
+})
+
 function UserScreen(props) {
     const { posts, loading } = props.data
+    const { classes } = props
 
     const [profile, setProfile] = useState(null)
     const [postIdParam, setPostIdParam] = useState(null)
@@ -64,7 +76,7 @@ function UserScreen(props) {
     );
     return (
         <div className="mainContainer">
-            <Grid container spacing={3} style={{ padding: '2rem 4rem' }}>
+            <Grid container spacing={3} className={classes.spacing}>
                 <Grid item sm={8} xs={12}>
                     <Grid container spacing={3}>
                         {postsMarkup}
@@ -96,4 +108,4 @@ const mapActionsToProps = {
     getUserData
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(UserScreen);
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(UserScreen))

@@ -124,7 +124,7 @@ export default {
         top: 0,
         left: 0,
         right: 0,
-        height: 100,
+        height: 60,
         borderBottom: '1px solid #919191'
       }
     },

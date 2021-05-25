@@ -55,7 +55,9 @@ export default {
       alignItems: 'center',
       justifyContent: 'space-between',
       backgroundColor: '#FFF',
-      padding: '3rem 5rem '
+      padding: '3rem 5rem',
+      ['@media (max-width: 850px)']: { // eslint-disable-line no-useless-computed-key
+        padding: '1rem'
     },
     form: {
       flexGrow: 1

@@ -16,9 +16,9 @@ import CustomButton from '../../utils/Button'
 
 const styles = {
     deleteButton: {
-        position: 'absolute',
-        left: '90%',
-        top: '10%'
+        margin: 0,
+        padding: 0,
+        marginRight: 0
     }
 }
 
@@ -42,7 +42,7 @@ function DeletePost(props) {
     return (
         <>
             <CustomButton tip="Delete post" onClick={handleOpen} btnClassName={classes.deleteButton}>
-                <DeleteOutline color="primary"/>
+                <DeleteOutline color="primary" />
             </CustomButton>
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
                 <DialogTitle>Are you sure you want to delete this post?</DialogTitle>
@@ -55,7 +55,7 @@ function DeletePost(props) {
     )
 }
 
-DeletePost.propTypes ={
+DeletePost.propTypes = {
     deletePost: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
     postId: PropTypes.string.isRequired

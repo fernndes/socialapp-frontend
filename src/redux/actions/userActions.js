@@ -8,7 +8,7 @@ let axiosConfig = {
         'Content-Type': 'application/json;charset=UTF-8',
         "Access-Control-Allow-Origin": "*",
     }
-  };
+};
 
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI })
@@ -43,7 +43,7 @@ export const getUserData = () => (dispatch) => {
             })
         })
         .catch(err => {
-            
+
         })
 }
 
@@ -74,7 +74,7 @@ export const logoutUser = () => (dispatch) => {
     })
 }
 
-const setAuthorizationHeader = (token) => {    
+const setAuthorizationHeader = (token) => {
     localStorage.setItem('tokenId', `Bearer ${token}`)
     axios.defaults.headers.common['Authorization'] = token
 }
@@ -90,7 +90,7 @@ export const uploadImage = (formData) => (dispatch) => {
             dispatch(getUserData())
         })
         .catch(err => {
-            
+
         })
 }
 
@@ -105,6 +105,6 @@ export const editUserDetails = (userDetails) => (dispatch) => {
             dispatch(getUserData())
         })
         .catch(err => {
-            
+
         })
 }

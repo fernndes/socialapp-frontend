@@ -1,9 +1,24 @@
 export default {
+  typography: {
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      'Quicksand',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(',')
+  },
   palette: {
     primary: {
-      light: '#2C5364', //
-      main: '#2C5364',
-      dark: '#2C5364',
+      light: '#6060d0', //
+      main: '#6060d0',
+      dark: '#6060d0',
       contrastText: '#FFF'
     },
     secondary: {
@@ -14,29 +29,51 @@ export default {
     }
   },
   group: {
-    typography: {
-      useNextVariants: true
+    paddingContainer: {
+      padding: '7rem 5rem',
+      ['@media (max-width: 850px)']: { // eslint-disable-line no-useless-computed-key
+        padding: '1rem',
+      }
+    },
+    bgLight: {
+      background: '#cdcdff'
+    },
+    borderRad: {
+      borderRadius: '20px'
     },
     navButton: {
       paddingRight: 20,
       paddingLeft: 20
     },
+    resetPadding: {
+      margin: 0,
+      padding: 0
+    },
     container: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'space-between',
       backgroundColor: '#FFF',
-      borderRadius: 20,
-      padding: '20px 40px 20px 40px'
+      padding: '3rem 5rem '
     },
     form: {
-      textAlign: 'center'
+      flexGrow: 1
+    },
+    imageBanner: {
+      backgroundImage: 'url(https://source.unsplash.com/random)',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
     },
     image: {
       margin: '20px auto 20px auto'
     },
     logo: {
-      fontSize: 40, 
+      fontSize: 40,
       marginTop: 40,
       border: '2px solid #2C5364',
-      borderRadius: '50%', 
+      borderRadius: '50%',
       padding: 20
     },
     pageTitle: {
@@ -68,6 +105,25 @@ export default {
     },
     paper: {
       padding: 20
+    },
+    verticalMenu: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      height: '100%',
+      padding: '2rem 3rem',
+      backgroundColor: '#fff',
+      ['@media (max-width: 850px)']: { // eslint-disable-line no-useless-computed-key
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-around',
+        padding: '0rem',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        height: 100,
+        borderBottom: '1px solid #919191'
+      }
     },
     profile: {
       '& .image-wrapper': {

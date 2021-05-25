@@ -23,7 +23,7 @@ const styles = (theme) => ({
     submitButton: {
         position: 'relative',
         float: 'right',
-        marginTop:40
+        marginTop: 40
     },
     closeButton: {
         position: 'absolute',
@@ -40,14 +40,14 @@ function MakeAPost(props) {
     const [errors, setErrors] = useState({})
 
     useEffect(() => {
-        if(props.ui.errors) {
+        if (props.ui.errors) {
             setErrors(props.ui.errors)
         }
-        if(!props.ui.errors && !props.ui.loading) {
+        if (!props.ui.errors && !props.ui.loading) {
             setBody('')
             setOpen(false)
             setErrors({})
-        }        
+        }
     }, [props.ui.errors])
 
     function handleOpen() {
@@ -69,29 +69,31 @@ function MakeAPost(props) {
 
         props.makeAPost(newPost)
 
-        if(!errors) {
+        setTimeout(() => {
+            setBody('')
             handleClose()
-        }
+        }, 1000)
+
     }
 
     return (
         <>
             <CustomButton tip="Make a post" onClick={handleOpen}>
-                <AddIcon size="large" style={{ border: '2px solid #2C5364', borderRadius: '50%', padding: 2 }}/>
+                <AddIcon size="large" style={{ margin: '2rem 0' }} />
             </CustomButton>
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
                 <CustomButton tip="Close" onClick={handleClose} tipClassName={classes.closeButton}>
                     <CloseIcon />
                 </CustomButton>
-                <DialogTitle>Make a post</DialogTitle>
+                <DialogTitle>Faça uma postagem</DialogTitle>
                 <DialogContent>
                     <form onSubmit={handleSubmit}>
                         <TextField name="body" type="text" label="Body" multiline rows="2" placeholder="Post at your fellow apes" className={classes.textField} value={body} fullWidth helperText={errors && errors.validation && errors.validation.body && errors.validation.body.message} error={errors && errors.validation ? true : false} onChange={(event) => setBody(event.target.value)} fullWidth />
                         {!loading ? (
-                            <Button type="submit" variant="contained" color="primary" className={classes.submitButton} fullWidth disabled={loading}>Submit</Button>
+                            <Button type="submit" variant="contained" color="primary" className={classes.submitButton} fullWidth disabled={loading}>ENVIAR</Button>
                         ) : (
-                                <CircularProgress size={30} />
-                            )}
+                            <CircularProgress size={30} />
+                        )}
 
                     </form>
                 </DialogContent>

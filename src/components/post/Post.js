@@ -7,6 +7,10 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import withStyles from '@material-ui/core/styles/withStyles'
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
+import CardHeader from '@material-ui/core/CardHeader';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
@@ -20,44 +24,90 @@ import PostDialog from './PostDialog'
 import LikeButton from './LikeButton'
 
 const styles = {
+    root: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     card: {
         display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
         position: 'relative',
-        marginBottom: 20,
+        textAlign: 'left'
+    },
+    avatar: {
+        height: '3rem',
+        width: '3rem',
+        borderRadius: '50%',
+        resizeMode: 'cover'
+    },
+    action: {
+        margin: 0,
+        padding: 0,
+        alignSelf: 'center'
+    },
+    bottom: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginTop: '1.5rem'
+    },
+    like: {
+        marginRight: 20
+    },
+    rounded: {
+        borderRadius: 20,
+        boxShadow: '1px 1px 4px rgba(0, 0, 0, 0.2)'
     },
     content: {
-        padding: 25,
-        objectFit: 'cover'
-    },
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+    }
 }
 
 function Post(props) {
     dayjs.extend(relativeTime)
-    const { classes, post: { body, createdAt, userImg, username, likeCount, postId, commentCount }, user: { authenticated } }  = props
+    const { classes, post: { body, createdAt, userImg, username, likeCount, postId, commentCount }, user: { authenticated } } = props
 
     const deleteButton = (authenticated && props.user.credentials.username === username) ? (
-        <DeletePost postId={postId}/>
+        <DeletePost postId={postId} />
     ) : (null)
 
     return (
         <Card className={classes.card}>
-            <CardMedia
-                className="card-img"
-                image={userImg}
-                title="Profile image"
+            <CardHeader
+                classes={{
+                    action: classes.action
+                }}
+                avatar={
+                    <img className={classes.avatar} src={userImg} alt="user_image" />
+                }
+                action={deleteButton}
+
+                title={
+                    <Typography variant="h5" component={Link} to={`/users/${username}`} color="textPrimary">{username}</Typography>
+                }
+                subheader={<Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>}
+
             />
             <CardContent className={classes.content}>
-                <Typography variant="h5" component={Link} to={`/users/${username}`} color="textPrimary">{username}</Typography>
-                {deleteButton}
-                <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
                 <Typography variant="body1">{body}</Typography>
-                <LikeButton postId={postId}/>
-                <span>{likeCount} Likes</span>
-                <CustomButton tip="comments">
-                    <ChatIcon color="primary" />
-                </CustomButton>
-                <span>{commentCount} comments</span>
-                <PostDialog postId={postId} userName={props.user.credentials.username}/>
+                <div className={classes.bottom}>
+                    <div style={{ display: 'flex' }}>
+                        <div style={{ marginRight: '0.75rem' }}>
+                            <LikeButton postId={postId} btnClassName={classes.like} />
+                            <span style={{ marginLeft: 10 }}>{likeCount} Likes</span>
+                        </div>
+                        <div>
+                            <CustomButton tip="comments">
+                                <ChatIcon color="primary" />
+                            </CustomButton>
+                            <span style={{ marginLeft: 10 }}>{commentCount} comentários</span>
+                        </div>
+                    </div>
+                    <PostDialog postId={postId} userName={props.user.credentials.username} />
+                </div>
             </CardContent>
         </Card>
     )

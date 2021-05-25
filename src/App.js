@@ -9,7 +9,18 @@ import store from '../src/redux/store'
 
 import themeObj from '../src/utils/theme'
 
-const theme = createMuiTheme(themeObj)
+const theme = createMuiTheme({
+  ...themeObj,
+  overrides: {
+    MuiInput: {
+      underline: {
+        '&:hover:not($disabled):before': {
+          borderBottom: '1px solid #6060d0'
+        },
+      },
+    },
+  },
+})
 
 export default function App() {
   return (

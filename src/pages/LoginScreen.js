@@ -19,7 +19,10 @@ import AppIcon from '../assets/images/elephant.png'
 import LockOpen from '@material-ui/icons/LockOpen'
 
 const styles = (theme) => ({
-    ...theme.group
+    ...theme.group,
+    rounded: {
+        borderRadius: 20
+    }
 })
 
 function LoginScreen(props) {
@@ -28,6 +31,8 @@ function LoginScreen(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState({})
+
+    let customStyle = [classes.form].join(' ')
 
     const history = useHistory()
 
@@ -41,9 +46,9 @@ function LoginScreen(props) {
 
         let errorsFields = validateField(data)
 
-        if(Object.keys(errorsFields).length === 0) {
+        if (Object.keys(errorsFields).length === 0) {
             props.loginUser(data, history)
-        }      
+        }
     }
 
     useEffect(() => {
@@ -53,33 +58,30 @@ function LoginScreen(props) {
 
     function validateField(data) {
         let fieldErrors = {};
-        if(data.password.length < 8 || data.password.length > 30) {
+        if (data.password.length < 8 || data.password.length > 30) {
             fieldErrors['password'] = { field: 'password', text: 'Field should have a minimum length of 8 and max of 30' }
         }
-        if(data.email.length < 1) {
+        if (data.email.length < 1) {
             fieldErrors['email'] = { field: 'email', text: 'Field should not be empty' }
         }
         return fieldErrors
     }
 
     return (
-        <Grid container className={classes.form}>
-            <Grid item sm />
-            <Grid item sm className={classes.container}>
-                <LockOpen className={classes.logo} color="primary" />
-                <Typography variant="h5" className={classes.pageTitle}>
-                    Log in to your account
-                </Typography>
+        <Grid container className={customStyle}>
+            <Grid item xs={false} sm={4} md={7} className={classes.imageBanner} />
+            <Grid item xs={12} sm={8} md={5} className={classes.container}>
+                <h1 className="text-gradient">Bubble</h1>
                 <form noValidate onSubmit={handleSubmit}>
-                    <TextField id="email" name="email" type="email" variant="outlined" label="Email" className={classes.textField} value={email} onChange={(event) => setEmail(event.target.value)} fullWidth helperText={ (errors && errors.validation) || (errors && errors.general) ? 'Email or password is wrong, please try again' : void (0)} error={(errors && errors.validation) || (errors && errors.general) ? true : false} autoComplete="off" inputProps={{ minLength: 1 }} />
-                    <TextField id="password" name="password" type="password" variant="outlined" label="Password" className={classes.textField} value={password} onChange={(event) => setPassword(event.target.value)} helperText={(errors && errors.validation) || (errors && errors.general) ? 'Email or password is wrong, please try again' : void (0)} error={(errors && errors.validation) || (errors && errors.general) ? true : false} fullWidth autoComplete="off" inputProps={{ minLength: 8, maxLength: 30 }}/>
+                    <TextField id="email" name="email" type="email" label="E-mail" className={classes.textField} value={email} onChange={(event) => setEmail(event.target.value)} fullWidth helperText={(errors && errors.validation) || (errors && errors.general) ? 'Email or password is wrong, please try again' : void (0)} error={(errors && errors.validation) || (errors && errors.general) ? true : false} autoComplete="off" inputProps={{ minLength: 1 }} />
+                    <TextField id="password" name="password" type="password" label="Senha" className={classes.textField} value={password} onChange={(event) => setPassword(event.target.value)} helperText={(errors && errors.validation) || (errors && errors.general) ? 'Email or password is wrong, please try again' : void (0)} error={(errors && errors.validation) || (errors && errors.general) ? true : false} fullWidth autoComplete="off" inputProps={{ minLength: 8, maxLength: 30 }} />
                     {!loading ? (
-                        <Button type="submit" variant="contained" color="primary" className={classes.button} fullWidth disabled={loading}>Login</Button>
+                        <Button type="submit" variant="contained" color="primary" className={classes.button} fullWidth disabled={loading}>Entrar</Button>
                     ) : (
-                            <CircularProgress />
-                        )}
+                        <CircularProgress style={{ marginTop: 20 }} />
+                    )}
                 </form>
-                <p className={classes.newAccount}><Link to="/signup">Don't have an account? Sign up</Link> </p>
+                <p className={classes.newAccount}><Link to="/signup">Ainda não tem uma conta? Cadastre-se</Link> </p>
             </Grid>
             <Grid item sm />
         </Grid>

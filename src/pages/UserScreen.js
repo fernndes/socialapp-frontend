@@ -11,6 +11,7 @@ import ProfileSkeleton from '../utils/ProfileSkeleton';
 
 import { connect } from 'react-redux';
 import { getUserData } from '../redux/actions/dataActions';
+import Navbar from '../components/layout/Navbar'
 
 function UserScreen(props) {
     const { posts, loading } = props.data
@@ -21,8 +22,8 @@ function UserScreen(props) {
     useEffect(() => {
         const username = props.match.params.username
         const postId = props.match.params.postId
-        
-        if(postId) {
+
+        if (postId) {
             setPostIdParam({ postIdParam: postId })
         }
 
@@ -32,12 +33,12 @@ function UserScreen(props) {
                 Authorization: localStorage.getItem('tokenId')
             }
         })
-        .then(res => {
-            setProfile(res.data.user)
-        })
-        .catch(err => {
-            
-        })
+            .then(res => {
+                setProfile(res.data.user)
+            })
+            .catch(err => {
+
+            })
     }, [])
 
     const postsMarkup = loading ? (
@@ -45,27 +46,40 @@ function UserScreen(props) {
     ) : posts === null ? (
         <p>No posts from this user</p>
     ) : !postIdParam ? (
-        posts.map((post) => <Post key={post.postId} post={post} />)
-    ) : (
-                    posts.map((post) => {
-                        if (post.postId !== postIdParam)
-                            return <Post key={post.postId} post={post} />;
-                        else return <Post key={post.postId} post={post} openDialog />;
-                    })
-                );
-    return (
-        <Grid container spacing={2}>
-            <Grid item sm={8} xs={12}>
-                {postsMarkup}
+        posts.map((post) => (
+            <Grid item sm={12} xs={12}>
+                <Post key={post.postId} post={post} />
             </Grid>
-            <Grid item sm={4} xs={12}>
-                {profile === null ? (
-                    <ProfileSkeleton />
-                ) : (
+        ))
+    ) : (
+        posts.map((post) => {
+            if (post.postId !== postIdParam)
+                return (
+                    <Grid item sm={12} xs={12}>
+                        <Post key={post.postId} post={post} />
+                    </Grid>
+                );
+            else return <Post key={post.postId} post={post} openDialog />;
+        })
+    );
+    return (
+        <div className="mainContainer">
+            <Grid container spacing={3} style={{ padding: '2rem 4rem' }}>
+                <Grid item sm={8} xs={12}>
+                    <Grid container spacing={3}>
+                        {postsMarkup}
+                    </Grid>
+                </Grid>
+                <Grid item sm={4} xs={12}>
+                    {profile === null ? (
+                        <ProfileSkeleton />
+                    ) : (
                         <StaticProfile profile={profile} />
                     )}
+                </Grid>
             </Grid>
-        </Grid>
+            <Navbar />
+        </div >
     )
 }
 

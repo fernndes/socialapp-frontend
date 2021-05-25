@@ -14,11 +14,14 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import CustomButton from '../../utils/Button'
 
 const styles = (theme) => ({
-    ...theme.group
+    ...theme.group,
+    btnLike: {
+        marginRight: '0.75rem'
+    }
 })
 
 function LikeButton(props) {
-    const { classes, user: { authenticated } }  = props
+    const { classes, user: { authenticated } } = props
 
     function likedPost() {
         if (props.user.likes && props.user.likes.find(like => like.postId === props.postId)) {
@@ -38,21 +41,21 @@ function LikeButton(props) {
 
     const likeButton = !authenticated ? (
         <Link to="/login">
-            <CustomButton tip="Like">            
-                <FavoriteBorder color="primary" />            
+            <CustomButton tip="Like" btnClassName={classes.btnLike}>
+                <FavoriteBorder color="primary" />
             </CustomButton>
         </Link>
     ) : (
-            likedPost() ? (
-                <CustomButton tip="Undo like" onClick={unlikePost}>
-                    <FavoriteIcon color="primary" />
-                </CustomButton>
-            ) : (
-                    <CustomButton tip="Like" onClick={likePost}>
-                        <FavoriteBorder color="primary" />
-                    </CustomButton>
-                )
+        likedPost() ? (
+            <CustomButton tip="Undo like" onClick={unlikePost} btnClassName={classes.btnLike}>
+                <FavoriteIcon color="primary" />
+            </CustomButton>
+        ) : (
+            <CustomButton tip="Like" onClick={likePost} btnClassName={classes.btnLike}>
+                <FavoriteBorder color="primary" />
+            </CustomButton>
         )
+    )
     return likeButton
 }
 

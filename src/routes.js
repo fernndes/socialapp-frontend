@@ -39,15 +39,12 @@ function Routes() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Navbar />
-        <div className="container">
-          <Switch>
-            <AuthRoute path="/login" component={LoginScreen} />
-            <Route exact path="/" component={HomeScreen} />
-            <Route exact path="/users/:username" component={UserScreen} />
-            <AuthRoute path="/signup" component={SignupScreen} />
-          </Switch>
-        </div>
+        <Switch>
+          <AuthRoute path="/login" component={LoginScreen} />
+          <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/users/:username" component={UserScreen} />
+          <AuthRoute path="/signup" component={SignupScreen} />
+        </Switch>
       </BrowserRouter>
     </Provider>
   );

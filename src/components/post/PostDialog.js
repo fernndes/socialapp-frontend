@@ -43,19 +43,20 @@ const styles = (theme) => ({
         top: '6%'
     },
     expandButton: {
-        position: 'absolute',
-        left: '90%'
     },
     spinnerDiv: {
         textAlign: 'center',
         marginTop: 50,
         marginBottom: 50
+    },
+    chat: {
+        marginRight: '0.75rem'
     }
 })
 
 
 function PostDialog(props) {
-    const { classes, ui: { loading }, post: {postId, body, createdAt, likeCount, commentCount, userImg, username, comments} } = props
+    const { classes, ui: { loading }, post: { postId, body, createdAt, likeCount, commentCount, userImg, username, comments } } = props
     const [open, setOpen] = useState(false)
 
     function handleOpen() {
@@ -70,55 +71,50 @@ function PostDialog(props) {
 
     const dialogMarkup = loading ? (
         <div className={classes.spinnerDiv}>
-            <CircularProgress size={100} thickness={2}/>
+            <CircularProgress size={100} thickness={2} />
         </div>
     ) : (
         <Grid container spacing={12}>
             <Grid item sm={5}>
-                <img src={userImg} alt="Profile" className={classes.profileImage}/>
+                <img src={userImg} alt="Profile" className={classes.profileImage} />
             </Grid>
             <Grid item sm={7}>
                 <Typography component={Link} color="primary" variant="h5" to={`/users/${username}`}>
                     @{username}
                 </Typography>
-                <hr className={classes.invisibleSeparator}/>
+                <hr className={classes.invisibleSeparator} />
                 <Typography variant="body2" color="textSecondary">
                     {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                 </Typography>
-                <hr className={classes.invisibleSeparator}/>
+                <hr className={classes.invisibleSeparator} />
                 <Typography variant="body1">
                     {body}
                 </Typography>
-                <LikeButton postId={postId}/>
+                <LikeButton postId={postId} />
                 <span>{likeCount} Likes</span>
                 <CustomButton tip="comments">
                     <ChatIcon color="primary" />
                 </CustomButton>
                 <span>{commentCount} comments</span>
             </Grid>
-            <hr className={classes.invisibleSeparator}/>
-            <CommentForm postId={postId}/>
-            <Comments comments={comments}/>
-        </Grid> 
+            <hr className={classes.invisibleSeparator} />
+            <CommentForm postId={postId} />
+            <Comments comments={comments} />
+        </Grid>
     )
 
     return (
         <>
             <CustomButton tip="Expand post" tipClassName={classes.expandButton} onClick={handleOpen}>
-                <UnfoldMore color="primary"/>
+                <UnfoldMore color="primary" />
             </CustomButton>
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
                 <CustomButton tip="Close" onClick={handleClose} tipClassName={classes.closeButton}>
                     <CloseIcon />
                 </CustomButton>
-                {/* <DialogTitle>Make a post</DialogTitle> */}
                 <DialogContent className={classes.dialogContent}>
                     {dialogMarkup}
                 </DialogContent>
-                {/* <DialogActions>
-                    <Button onCLick={handleClose} color="primary">Cancel</Button>
-                    <Button onCLick={handleSubmit} color="primary">Cancel</Button>
-                </DialogActions> */}
             </Dialog>
         </>
     )

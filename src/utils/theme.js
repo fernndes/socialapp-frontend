@@ -57,7 +57,7 @@ export default {
       backgroundColor: '#FFF',
       padding: '3rem 5rem',
       ['@media (max-width: 850px)']: { // eslint-disable-line no-useless-computed-key
-        padding: '1rem'
+        padding: '2rem'
       }
     },
     form: {

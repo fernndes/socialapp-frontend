@@ -68,7 +68,7 @@ function EditDetails(props) {
 
     return (
         <>
-            <CustomButton tip="Edit details" onClick={handleOpen} btnClassName={classes.button}>
+            <CustomButton tip="Edite seu perfil" onClick={handleOpen} btnClassName={classes.button}>
                 <EditIcon color="primary" />
             </CustomButton>
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
@@ -76,7 +76,7 @@ function EditDetails(props) {
                 <DialogContent>
                     <form>
                         <TextField name="bio" type="text" label="Bio" multiline rows="2" placeholder="A short bio about yourself" className={classes.textField} value={bio} onChange={(e) => setBio(e.target.value)} fullWidth />
-                        <TextField name="location" type="text" label="Location" placeholder="Where you live" className={classes.textField} value={location} onChange={(e) => setLocation(e.target.value)} fullWidth />
+                        <TextField name="location" type="text" label="Local" placeholder="Where you live" className={classes.textField} value={location} onChange={(e) => setLocation(e.target.value)} fullWidth />
                     </form>
                 </DialogContent>
                 <DialogActions>

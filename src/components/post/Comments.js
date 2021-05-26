@@ -14,8 +14,22 @@ const styles = (theme) => ({
     maxWidth: '100%',
     objectFit: 'contain',
     borderRadius: '50%',
+    ['@media (max-width: 850px)']: { // eslint-disable-line no-useless-computed-key
+      display: 'none'
+    }
   },
-  commentData: {
+  spacing: {
+    padding: '0rem 0.75rem 2rem 0.75rem',
+    ['@media (max-width: 850px)']: { // eslint-disable-line no-useless-computed-key
+      padding: 0,
+      paddingBottom: '2rem'
+    }
+  },
+  item: {
+    paddingRight: 20,
+    ['@media (max-width: 850px)']: { // eslint-disable-line no-useless-computed-key
+      padding: 0
+    }
   }
 });
 
@@ -23,20 +37,22 @@ function Comments(props) {
   const { comments, classes } = props
 
   return (
-    <Grid container style={{ padding: '0rem 0.75rem 2rem 0.75rem' }}>
+    <Grid container className={classes.spacing}>
       {comments.map((comment, index) => {
         const { body, createdAt, userImg, username } = comment;
         return (
           <Grid item sm={12} xs={12} key={createdAt}>
-            <Grid container spacing={3} style={{ alignItems: 'center' }}>
-              <Grid item xs={3}>
+            <Grid container style={{ alignItems: 'center' }}>
+              <Grid item xs={0} sm={3} className={classes.item}>
                 <img
                   src={userImg}
                   alt="comment"
                   className={classes.commentImage}
                 />
               </Grid>
-              <Grid item xs={9} className={classes.commentData}>
+              <Grid item xs={12} sm={9} className={classes.commentData} classes={{
+                root: classes.item
+              }}>
                 <Typography
                   variant="h5"
                   component={Link}

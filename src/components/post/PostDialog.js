@@ -37,10 +37,7 @@ const styles = (theme) => ({
         }
     },
     dialogContent: {
-        padding: 20,
-        ['@media (max-width: 850px)']: { // eslint-disable-line no-useless-computed-key
-            padding: '0 0.75rem'
-        }
+        padding: '0 1.5rem'
     },
     closeButton: {
         alignSelf: 'flex-end'

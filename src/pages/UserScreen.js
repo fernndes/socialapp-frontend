@@ -90,7 +90,6 @@ function UserScreen(props) {
                 style={{ flexGrow: 1 }}
                 columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
             >
-                <span style={{ fontSize: '4rem', fontWeight: 'bold', color: '#fff' }}></span>
                 <Masonry gutter={20} style={{ marginTop: '1rem' }}>
                     {postsMarkup}
                 </Masonry>

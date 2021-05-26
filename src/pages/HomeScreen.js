@@ -84,7 +84,6 @@ function HomeScreen(props) {
                 style={{ flexGrow: 1 }}
                 columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
             >
-                <span style={{ fontSize: '4rem', fontWeight: 'bold', color: '#fff' }}>Bubble</span>
                 <Masonry gutter={20} style={{ marginTop: '1rem' }}>
                     {recentPostsMarkup}
                 </Masonry>

@@ -121,11 +121,11 @@ export default {
         justifyContent: 'space-around',
         padding: '0rem',
         position: 'fixed',
-        top: 0,
+        bottom: 0,
         left: 0,
         right: 0,
         height: 60,
-        borderBottom: '1px solid #919191'
+        borderTop: '1px solid #919191'
       }
     },
     profile: {

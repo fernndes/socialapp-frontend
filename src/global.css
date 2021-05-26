@@ -69,7 +69,6 @@ a:hover {
   .mainContainer {
     flex-grow: 1; 
     display: flex; 
-    flex-direction: column-reverse;
-    margin-top: 2.5rem;
+    flex-direction: column;
   }
 }

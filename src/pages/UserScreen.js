@@ -10,6 +10,9 @@ import api from '../services/api'
 import PostSkeleton from '../utils/PostSkeleton';
 import ProfileSkeleton from '../utils/ProfileSkeleton';
 
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
+
+
 import { connect } from 'react-redux';
 import { getUserData } from '../redux/actions/dataActions';
 import Navbar from '../components/layout/Navbar'
@@ -76,20 +79,23 @@ function UserScreen(props) {
     );
     return (
         <div className="mainContainer">
-            <Grid container spacing={3} className={classes.spacing}>
-                <Grid item sm={8} xs={12}>
-                    <Grid container spacing={3}>
-                        {postsMarkup}
-                    </Grid>
-                </Grid>
-                <Grid item sm={4} xs={12}>
-                    {profile === null ? (
-                        <ProfileSkeleton />
-                    ) : (
-                        <StaticProfile profile={profile} />
-                    )}
-                </Grid>
-            </Grid>
+            {profile === null ? (
+                <ProfileSkeleton />
+            ) : (
+                <StaticProfile profile={profile} />
+            )}
+
+            <ResponsiveMasonry
+                className={classes.spacing}
+                style={{ flexGrow: 1 }}
+                columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+            >
+                <span style={{ fontSize: '4rem', fontWeight: 'bold', color: '#fff' }}></span>
+                <Masonry gutter={20} style={{ marginTop: '1rem' }}>
+                    {postsMarkup}
+                </Masonry>
+            </ResponsiveMasonry>
+
             <Navbar />
         </div >
     )

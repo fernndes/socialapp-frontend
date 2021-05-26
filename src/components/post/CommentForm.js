@@ -17,6 +17,7 @@ function CommentForm(props) {
   const { classes, authenticated } = props;
 
   const [body, setBody] = useState('')
+  const [success, setSuccess] = useState(null)
   const [errors, setErrors] = useState({})
 
   useEffect(() => {
@@ -32,6 +33,7 @@ function CommentForm(props) {
     e.preventDefault()
 
     props.submitComment(props.postId, { body })
+    setSuccess('Enviado com sucesso')
     setBody('')
   }
 
@@ -43,7 +45,7 @@ function CommentForm(props) {
           type="text"
           label="Faça um comentário"
           error={errors.comment ? true : false}
-          helperText={errors.comment || "O comentário deve conter ao menos 1 caractere"}
+          helperText={errors.comment || success || "O comentário deve conter ao menos 1 caractere"}
           value={body}
           onChange={e => setBody(e.target.value)}
           fullWidth

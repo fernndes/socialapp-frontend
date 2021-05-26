@@ -25,9 +25,7 @@ const styles = (theme) => ({
         marginTop: 40
     },
     closeButton: {
-        position: 'absolute',
-        left: '91%',
-        top: '6%'
+        alignSelf: 'flex-end'
     }
 })
 

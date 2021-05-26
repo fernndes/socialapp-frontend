@@ -19,7 +19,7 @@ import CustomButton from '../../utils/Button'
 const styles = (theme) => ({
     ...theme.group,
     button: {
-        float: 'right'
+        alignSelf: 'flex-end'
     }
 })
 
@@ -72,7 +72,7 @@ function EditDetails(props) {
                 <EditIcon color="primary" />
             </CustomButton>
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-                <DialogTitle>Edit your details</DialogTitle>
+                <DialogTitle>Edite seu perfil</DialogTitle>
                 <DialogContent>
                     <form>
                         <TextField name="bio" type="text" label="Bio" multiline rows="2" placeholder="A short bio about yourself" className={classes.textField} value={bio} onChange={(e) => setBio(e.target.value)} fullWidth />

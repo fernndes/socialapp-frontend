@@ -23,8 +23,8 @@ export default function (state = initialState, action) {
         case UNLIKE_POST:
             var index = state.posts.findIndex(post => post.postId === action.payload.postId)
             state.posts[index] = action.payload
-            if(state.post.postId === action.payload.postId) {
-                state.post = action.payload
+            if (state.post.postId === action.payload.postId) {
+                state.post = Object.assign({}, state.post, action.payload)
             }
             return {
                 ...state

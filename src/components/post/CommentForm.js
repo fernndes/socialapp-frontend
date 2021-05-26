@@ -10,74 +10,74 @@ import { connect } from 'react-redux';
 import { submitComment } from '../../redux/actions/dataActions';
 
 const styles = (theme) => ({
-    ...theme.group
+  ...theme.group
 });
 
 function CommentForm(props) {
-    const { classes, authenticated } = props;
+  const { classes, authenticated } = props;
 
-    const [body, setBody] = useState('')
-    const [errors, setErrors] = useState({})
+  const [body, setBody] = useState('')
+  const [errors, setErrors] = useState({})
 
-    useEffect(() => {
-        if(props.ui.errors) {
-            setErrors({errors: props.ui.errors})
-        }
-        if(!props.ui.errors && !props.ui.loading) {
-            setBody('')
-        }        
-    }, [])
-
-    function handleSubmit(e) {
-        e.preventDefault()
-
-        props.submitComment(props.postId, { body })
+  useEffect(() => {
+    if (props.ui.errors) {
+      setErrors({ errors: props.ui.errors })
     }
+    if (!props.ui.errors && !props.ui.loading) {
+      setBody('')
+    }
+  }, [])
 
-    const commentFormMarkup = authenticated ? (
-        <Grid item sm={12} style={{ textAlign: 'center' }}>
-          <form onSubmit={handleSubmit}>
-            <TextField
-              name="body"
-              type="text"
-              label="Comment on post"
-              error={errors.comment ? true : false}
-              helperText={errors.comment}
-              value={body}
-              onChange={e => setBody(e.target.value)}
-              fullWidth
-              className={classes.textField}
-            />
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-            >
-              Submit
+  function handleSubmit(e) {
+    e.preventDefault()
+
+    props.submitComment(props.postId, { body })
+  }
+
+  const commentFormMarkup = authenticated ? (
+    <Grid item sm={12} style={{ textAlign: 'right' }}>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          name="body"
+          type="text"
+          label="Faça um comentário"
+          error={errors.comment ? true : false}
+          helperText={errors.comment}
+          value={body}
+          onChange={e => setBody(e.target.value)}
+          fullWidth
+          className={classes.textField}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          className={classes.button}
+        >
+          Enviar
             </Button>
-          </form>
-          <hr className={classes.invisibleSeparator} />
-        </Grid>
-      ) : null;
-      return commentFormMarkup;
+      </form>
+      <hr className={classes.invisibleSeparator} />
+    </Grid>
+  ) : null;
+  return commentFormMarkup;
 }
 
 CommentForm.propTypes = {
-    submitComment: PropTypes.func.isRequired,
-    ui: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired,
-    postId: PropTypes.string.isRequired,
-    authenticated: PropTypes.bool.isRequired
+  submitComment: PropTypes.func.isRequired,
+  ui: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  postId: PropTypes.string.isRequired,
+  authenticated: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
-    ui: state.ui,
-    authenticated: state.user.authenticated
+  ui: state.ui,
+  authenticated: state.user.authenticated
 });
 
 const mapActionsToProps = {
-    submitComment
+  submitComment
 }
 
-export default connect(mapStateToProps, mapActionsToProps )(withStyles(styles)(CommentForm));
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(CommentForm));

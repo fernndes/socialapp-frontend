@@ -1,4 +1,4 @@
-import { SET_USER, SET_ERRORS, LIKE_POST, UNLIKE_POST, CLEAR_ERRORS, LOADING_UI, LOADING_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED } from '../types'
+import { SET_USER, LIKE_POST, UNLIKE_POST, LOADING_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED } from '../types'
 
 const initialState = {
     authenticated: false,
@@ -7,8 +7,8 @@ const initialState = {
     notifications: []
 }
 
-export default function(state = initialState, action) {
-    switch(action.type) {
+export default function (state = initialState, action) {
+    switch (action.type) {
         case SET_AUTHENTICATED:
             return {
                 ...state,
@@ -20,7 +20,7 @@ export default function(state = initialState, action) {
             return {
                 authenticated: true,
                 loading: false,
-                ...action.payload,                
+                ...action.payload,
             }
         case LOADING_USER:
             return {

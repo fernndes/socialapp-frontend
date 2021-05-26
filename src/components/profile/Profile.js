@@ -12,7 +12,6 @@ import EditDetails from './EditDetails'
 import LocationOn from '@material-ui/icons/LocationOn'
 import CameraIcon from '@material-ui/icons/PhotoCamera'
 import CalendarToday from '@material-ui/icons/CalendarToday'
-import EditIcon from '@material-ui/icons/Edit'
 import KeyboardReturn from '@material-ui/icons/KeyboardReturn'
 import Avatar from '@material-ui/core/Avatar'
 
@@ -40,9 +39,7 @@ const styles = (theme) => ({
         boxShadow: '1px 1px 4px rgba(0, 0, 0, 0.2)'
     },
     closeButton: {
-        position: 'absolute',
-        left: '91%',
-        top: '6%'
+        alignSelf: 'flex-end'
     }
 })
 
@@ -81,7 +78,7 @@ function Profile(props) {
                 </CustomButton>
                 <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
                     <CustomButton tip="Close" onClick={handleClose} tipClassName={classes.closeButton}>
-                        <CloseIcon />
+                        <CloseIcon style={{ margin: '0.5rem' }} />
                     </CustomButton>
                     <DialogContent style={{ background: 'rgba(255, 255, 255, 0.5)' }}>
                         <div className={classes.paper} classes={{

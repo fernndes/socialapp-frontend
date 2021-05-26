@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { useEffect } from 'react'
 
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -9,66 +9,63 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const styles = (theme) => ({
-    ...theme.group,
-    commentImage: {
-      maxWidth: '100%',
-      height: 100,
-      objectFit: 'cover',
-      borderRadius: '50%'
-    },
-    commentData: {
-      marginLeft: 20
-    }
-  });
+  ...theme.group,
+  commentImage: {
+    maxWidth: '100%',
+    objectFit: 'contain',
+    borderRadius: '50%',
+  },
+  commentData: {
+  }
+});
 
 function Comments(props) {
-    const { comments, classes } = props
-    return (
-        <Grid container>
-        {comments.map((comment, index) => {
-          const { body, createdAt, userImg, username } = comment;
-          return (
-            <Fragment key={createdAt}>
-              <Grid item sm={12}>
-                <Grid container>
-                  <Grid item sm={2}>
-                    <img
-                      src={userImg}
-                      alt="comment"
-                      className={classes.commentImage}
-                    />
-                  </Grid>
-                  <Grid item sm={9}>
-                    <div className={classes.commentData}>
-                      <Typography
-                        variant="h5"
-                        component={Link}
-                        to={`/users/${username}`}
-                        color="primary"
-                      >
-                        {username}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
-                      </Typography>
-                      <hr className={classes.invisibleSeparator} />
-                      <Typography variabnt="body1">{body}</Typography>
-                    </div>
-                  </Grid>
-                </Grid>
+  const { comments, classes } = props
+
+  return (
+    <Grid container style={{ padding: '0rem 0.75rem 2rem 0.75rem' }}>
+      {comments.map((comment, index) => {
+        const { body, createdAt, userImg, username } = comment;
+        return (
+          <Grid item sm={12} xs={12} key={createdAt}>
+            <Grid container spacing={3} style={{ alignItems: 'center' }}>
+              <Grid item xs={3}>
+                <img
+                  src={userImg}
+                  alt="comment"
+                  className={classes.commentImage}
+                />
               </Grid>
-              {index !== comments.length - 1 && (
+              <Grid item xs={9} className={classes.commentData}>
+                <Typography
+                  variant="h5"
+                  component={Link}
+                  to={`/users/${username}`}
+                  color="primary"
+                >
+                  {username}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
+                </Typography>
+                <hr className={classes.invisibleSeparator} />
+                <Typography variabnt="body1">{body}</Typography>
+              </Grid>
+            </Grid>
+            {
+              index !== comments.length - 1 && (
                 <hr className={classes.visibleSeparator} />
-              )}
-            </Fragment>
-          );
-        })}
-      </Grid>
-    )
+              )
+            }
+          </Grid>
+        );
+      })}
+    </Grid >
+  )
 }
 
 Comments.propTypes = {
-    comments: PropTypes.array.isRequired
-  };
-  
-  export default withStyles(styles)(Comments);
+  comments: PropTypes.array.isRequired
+};
+
+export default withStyles(styles)(Comments);

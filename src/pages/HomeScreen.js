@@ -1,18 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import PropTypes from 'prop-types'
-import Grid from "@material-ui/core/Grid"
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress'
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardHeader from '@material-ui/core/CardHeader';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
@@ -20,7 +8,6 @@ import { connect } from 'react-redux'
 import { getPosts, makeAPost, clearErrors } from '../redux/actions/dataActions'
 
 import Post from '../components/post/Post'
-import Profile from '../components/profile/Profile'
 import PostSkeleton from '../utils/PostSkeleton'
 import Navbar from '../components/layout/Navbar'
 
@@ -53,20 +40,7 @@ const styles = (theme) => ({
 
 function HomeScreen(props) {
     const { classes } = props
-    let customStyle = [classes.form, classes.rounded].join(' ')
     const { posts, loading } = props.data
-    const [body, setBody] = useState('')
-    const [errors, setErrors] = useState({})
-
-    useEffect(() => {
-        if (props.ui.errors) {
-            setErrors(props.ui.errors)
-        }
-        if (!props.ui.errors && !props.ui.loading) {
-            setBody('')
-            setErrors({})
-        }
-    }, [props.ui.errors])
 
     useEffect(() => {
         props.getPosts()
@@ -83,6 +57,7 @@ function HomeScreen(props) {
                 className={classes.spacing}
                 style={{ flexGrow: 1 }}
                 columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+
             >
                 <Masonry gutter={20} style={{ marginTop: '1rem' }}>
                     {recentPostsMarkup}

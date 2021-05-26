@@ -1,14 +1,7 @@
 import axios from 'axios'
-import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, LOADING_USER, SET_UNAUTHENTICATED, SET_LOGIN_ERRORS } from '../types'
+import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, LOADING_USER, SET_UNAUTHENTICATED } from '../types'
 
 import api from '../../services/api'
-
-let axiosConfig = {
-    headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-        "Access-Control-Allow-Origin": "*",
-    }
-};
 
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI })
@@ -23,7 +16,7 @@ export const loginUser = (userData, history) => (dispatch) => {
         })
         .catch((error) => {
             dispatch({
-                type: SET_LOGIN_ERRORS,
+                type: SET_ERRORS,
                 payload: error.response.data
             })
         })

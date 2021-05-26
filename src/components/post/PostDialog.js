@@ -26,21 +26,21 @@ const styles = (theme) => ({
     ...theme.group,
     invisibleSeparator: {
         border: 'none',
-        margin: 4
+        margin: '1.5rem'
     },
     profileImage: {
-        maxWidth: 150,
-        height: 150,
+        maxWidth: '100%',
         borderRadius: '50%',
-        objectFit: 'cover'
+        objectFit: 'cover',
+        ['@media (max-width: 850px)']: { // eslint-disable-line no-useless-computed-key
+            display: 'none'
+        }
     },
     dialogContent: {
         padding: 20
     },
     closeButton: {
-        position: 'absolute',
-        left: '90%',
-        top: '6%'
+        alignSelf: 'flex-end'
     },
     expandButton: {
     },
@@ -51,6 +51,13 @@ const styles = (theme) => ({
     },
     chat: {
         marginRight: '0.75rem'
+    },
+    bottom: {
+        display: 'flex',
+        marginTop: '1.5rem'
+    },
+    head: {
+        marginBottom: '1.5rem'
     }
 })
 
@@ -71,34 +78,40 @@ function PostDialog(props) {
 
     const dialogMarkup = loading ? (
         <div className={classes.spinnerDiv}>
-            <CircularProgress size={100} thickness={2} />
+            <CircularProgress size={50} thickness={2} />
         </div>
     ) : (
-        <Grid container spacing={12}>
+        <Grid container spacing={3}>
             <Grid item sm={5}>
                 <img src={userImg} alt="Profile" className={classes.profileImage} />
             </Grid>
-            <Grid item sm={7}>
-                <Typography component={Link} color="primary" variant="h5" to={`/users/${username}`}>
-                    @{username}
-                </Typography>
-                <hr className={classes.invisibleSeparator} />
-                <Typography variant="body2" color="textSecondary">
-                    {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
-                </Typography>
-                <hr className={classes.invisibleSeparator} />
+            <Grid item sm={7} xs={12}>
+                <div className={classes.head}>
+                    <Typography component={Link} color="primary" variant="h5" to={`/users/${username}`}>
+                        @{username}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                        {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
+                    </Typography>
+                </div>
                 <Typography variant="body1">
                     {body}
                 </Typography>
-                <LikeButton postId={postId} />
-                <span>{likeCount} Likes</span>
-                <CustomButton tip="comments">
-                    <ChatIcon color="primary" />
-                </CustomButton>
-                <span>{commentCount} comments</span>
+                <div className={classes.bottom}>
+                    <div style={{ marginRight: '0.75rem' }}>
+                        <LikeButton postId={postId} />
+                        <span style={{ marginLeft: 10 }}>{likeCount}</span>
+                    </div>
+                    <div>
+                        <CustomButton tip="comments">
+                            <ChatIcon color="primary" />
+                        </CustomButton>
+                        <span style={{ marginLeft: 10 }}>{commentCount}</span>
+                    </div>
+                </div>
             </Grid>
-            <hr className={classes.invisibleSeparator} />
             <CommentForm postId={postId} />
+            <hr className={classes.invisibleSeparator} />
             <Comments comments={comments} />
         </Grid>
     )
@@ -110,7 +123,7 @@ function PostDialog(props) {
             </CustomButton>
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
                 <CustomButton tip="Close" onClick={handleClose} tipClassName={classes.closeButton}>
-                    <CloseIcon />
+                    <CloseIcon style={{ margin: '0.5rem' }} />
                 </CustomButton>
                 <DialogContent className={classes.dialogContent}>
                     {dialogMarkup}

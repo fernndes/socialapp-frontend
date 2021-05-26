@@ -83,10 +83,10 @@ export default {
       margin: '20px auto 20px auto'
     },
     textField: {
-      margin: '20px auto 0px auto'
+      margin: '0px auto 1.5rem auto'
     },
     button: {
-      marginTop: 40,
+      marginTop: '0.5rem',
       position: 'relative'
     },
     customError: {
@@ -104,10 +104,11 @@ export default {
     visibleSeparator: {
       width: '100%',
       borderBottom: '1px solid rgba(0,0,0,0.1)',
-      marginBottom: 20
+      margin: '1.5rem 0'
     },
     paper: {
-      padding: 20
+      padding: 20,
+      position: 'relative'
     },
     verticalMenu: {
       display: 'flex',
@@ -143,7 +144,11 @@ export default {
         height: 200,
         objectFit: 'cover',
         maxWidth: '100%',
-        borderRadius: '50%'
+        borderRadius: '50%',
+        ['@media (max-width: 850px)']: { // eslint-disable-line no-useless-computed-key
+          width: 100,
+          height: 100,
+        }
       },
       '& .profile-details': {
         textAlign: 'center',

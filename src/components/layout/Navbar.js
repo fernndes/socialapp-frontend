@@ -5,13 +5,10 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import withStyles from '@material-ui/core/styles/withStyles'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 
 import AddIcon from '@material-ui/icons/Add'
 import HomeIcon from '@material-ui/icons/Home'
-// import Notifications from '@material-ui/icons/Notifications'
 
 import CustomButton from '../../utils/Button'
 import MakeAPost from '../post/MakeAPost'

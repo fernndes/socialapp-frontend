@@ -1,4 +1,4 @@
-import { SET_POSTS, CLEAR_ERRORS, STOP_LOADING_UI, LOADING_DATA, DELETE_POST, SET_AUTHENTICATED, LIKE_POST, UNLIKE_POST, LOADING_UI, SUBMIT_COMMENT, MAKE_POST, SET_ERRORS, SET_POST } from '../types'
+import { SET_POSTS, CLEAR_ERRORS, STOP_LOADING_UI, LOADING_DATA, DELETE_POST, LIKE_POST, UNLIKE_POST, LOADING_UI, SUBMIT_COMMENT, MAKE_POST, SET_ERRORS, SET_POST } from '../types'
 import api from '../../services/api'
 
 export const getPosts = () => (dispatch) => {
@@ -33,9 +33,6 @@ export const likePost = (postId) => dispatch => {
                 payload: res.data
             })
         })
-        .catch(err => {
-            
-        })
 }
 
 export const unlikePost = (postId) => dispatch => {
@@ -50,9 +47,6 @@ export const unlikePost = (postId) => dispatch => {
                 payload: res.data
             })
         })
-        .catch(err => {
-            
-        })
 }
 
 export const deletePost = (postId) => dispatch => {
@@ -66,9 +60,6 @@ export const deletePost = (postId) => dispatch => {
                 type: DELETE_POST,
                 payload: postId
             })
-        })
-        .catch(err => {
-            
         })
 }
 
@@ -117,9 +108,6 @@ export const getPost = (postId) => dispatch => {
             dispatch({
                 type: STOP_LOADING_UI
             })
-        })
-        .catch(err => {
-            
         })
 }
 

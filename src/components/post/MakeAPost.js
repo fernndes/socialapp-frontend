@@ -8,7 +8,6 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -88,7 +87,7 @@ function MakeAPost(props) {
                 <DialogTitle>Faça uma postagem</DialogTitle>
                 <DialogContent>
                     <form onSubmit={handleSubmit}>
-                        <TextField name="body" type="text" label="Body" multiline rows="2" placeholder="Post at your fellow apes" className={classes.textField} value={body} fullWidth helperText={errors && errors.validation && errors.validation.body && errors.validation.body.message} error={errors && errors.validation ? true : false} onChange={(event) => setBody(event.target.value)} fullWidth />
+                        <TextField name="body" type="text" label="Body" multiline rows="2" placeholder="..." className={classes.textField} value={body} fullWidth helperText={errors && errors.validation && errors.validation.body && errors.validation.body.message} error={errors && errors.validation ? true : false} onChange={(event) => setBody(event.target.value)} fullWidth />
                         {!loading ? (
                             <Button type="submit" variant="contained" color="primary" className={classes.submitButton} fullWidth disabled={loading}>ENVIAR</Button>
                         ) : (

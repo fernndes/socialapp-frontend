@@ -76,7 +76,7 @@ function Profile(props) {
                 <CustomButton tip="Profile" onClick={handleOpen}>
                     <Avatar alt="Profile" src={imageUrl} />
                 </CustomButton>
-                <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+                <Dialog open={open} onClose={handleClose} fullWidth>
                     <CustomButton tip="Close" onClick={handleClose} tipClassName={classes.closeButton}>
                         <CloseIcon style={{ margin: '0.5rem' }} />
                     </CustomButton>

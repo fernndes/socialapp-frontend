@@ -109,7 +109,10 @@ export default {
     paper: {
       height: '100%',
       padding: '3rem',
-      position: 'relative'
+      position: 'relative',
+      ['@media (max-width: 850px)']: { // eslint-disable-line no-useless-computed-key
+        padding: '1rem'
+      }
     },
     verticalMenu: {
       display: 'flex',

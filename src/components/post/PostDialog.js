@@ -37,7 +37,10 @@ const styles = (theme) => ({
         }
     },
     dialogContent: {
-        padding: 20
+        padding: 20,
+        ['@media (max-width: 850px)']: { // eslint-disable-line no-useless-computed-key
+            padding: '0 0.75rem'
+        }
     },
     closeButton: {
         alignSelf: 'flex-end'
@@ -81,7 +84,7 @@ function PostDialog(props) {
             <CircularProgress size={50} thickness={2} />
         </div>
     ) : (
-        <Grid container spacing={3}>
+        <Grid container>
             <Grid item sm={5}>
                 <img src={userImg} alt="Profile" className={classes.profileImage} />
             </Grid>

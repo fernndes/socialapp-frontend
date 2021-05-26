@@ -76,12 +76,12 @@ function MakeAPost(props) {
             <CustomButton tip="Faça uma postagem" onClick={handleOpen}>
                 <AddIcon size="large" style={{ margin: '2rem 0' }} />
             </CustomButton>
-            <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+            <Dialog open={open} onClose={handleClose} fullWidth>
                 <CustomButton tip="Close" onClick={handleClose} tipClassName={classes.closeButton}>
                     <CloseIcon style={{ margin: '0.5rem' }} />
                 </CustomButton>
                 <DialogTitle>Faça uma postagem</DialogTitle>
-                <DialogContent>
+                <DialogContent style={{ paddingBottom: '2rem' }}>
                     <form onSubmit={handleSubmit}>
                         <TextField name="body" type="text" label="Escreva algo..." multiline rows="2" placeholder="..." className={classes.textField} value={body} fullWidth helperText={errors && errors.validation && errors.validation.body && errors.validation.body.message || "A postagem deve conter no mínimo 12 caracteres"} error={errors && errors.validation ? true : false} onChange={(event) => setBody(event.target.value)} fullWidth inputProps={{ minLength: 12 }} required={true} />
                         {!loading ? (

@@ -68,16 +68,14 @@ function MakeAPost(props) {
 
         props.makeAPost(newPost)
 
-        setTimeout(() => {
-            setBody('')
-            handleClose()
-        }, 1000)
+        setBody('')
+        handleClose()
 
     }
 
     return (
         <>
-            <CustomButton tip="Make a post" onClick={handleOpen}>
+            <CustomButton tip="Faça uma postagem" onClick={handleOpen}>
                 <AddIcon size="large" style={{ margin: '2rem 0' }} />
             </CustomButton>
             <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
@@ -87,7 +85,7 @@ function MakeAPost(props) {
                 <DialogTitle>Faça uma postagem</DialogTitle>
                 <DialogContent>
                     <form onSubmit={handleSubmit}>
-                        <TextField name="body" type="text" label="Body" multiline rows="2" placeholder="..." className={classes.textField} value={body} fullWidth helperText={errors && errors.validation && errors.validation.body && errors.validation.body.message} error={errors && errors.validation ? true : false} onChange={(event) => setBody(event.target.value)} fullWidth />
+                        <TextField name="body" type="text" label="Escreva algo..." multiline rows="2" placeholder="..." className={classes.textField} value={body} fullWidth helperText={errors && errors.validation && errors.validation.body && errors.validation.body.message} error={errors && errors.validation ? true : false} onChange={(event) => setBody(event.target.value)} fullWidth inputProps={{ minLength: 12 }} required={true} />
                         {!loading ? (
                             <Button type="submit" variant="contained" color="primary" className={classes.submitButton} fullWidth disabled={loading}>ENVIAR</Button>
                         ) : (

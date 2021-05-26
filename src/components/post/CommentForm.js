@@ -32,6 +32,7 @@ function CommentForm(props) {
     e.preventDefault()
 
     props.submitComment(props.postId, { body })
+    setBody('')
   }
 
   const commentFormMarkup = authenticated ? (
@@ -42,7 +43,7 @@ function CommentForm(props) {
           type="text"
           label="Faça um comentário"
           error={errors.comment ? true : false}
-          helperText={errors.comment}
+          helperText={errors.comment || "O comentário deve conter ao menos 1 caractere"}
           value={body}
           onChange={e => setBody(e.target.value)}
           fullWidth

@@ -107,7 +107,8 @@ export default {
       margin: '1.5rem 0'
     },
     paper: {
-      padding: 20,
+      height: '100%',
+      padding: '3rem',
       position: 'relative'
     },
     verticalMenu: {

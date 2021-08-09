@@ -2,7 +2,7 @@
 
 Este projeto tem como objetivo desenvolver uma plataforma fictícia na qual pessoas podem criar um perfil público e realizar postagens, tal como no Twitter.
 
-Demo: https://scl-fe.herokuapp.com/
+Demo: 
 
 ## Fluxo básico
 
@@ -64,11 +64,11 @@ Para rodar o projeto:
 ## Imagens :house:
 
 <h1 align="center">
-  <img src="https://user-images.githubusercontent.com/59981795/109364806-5f90e880-786e-11eb-9790-8153bfc10d54.png" width="400"/>
-  <img src="https://user-images.githubusercontent.com/59981795/109364847-78010300-786e-11eb-80a0-704523eb93b7.png" width="400"/>
-  <img src="https://user-images.githubusercontent.com/59981795/109365286-961b3300-786f-11eb-9680-3619f60ace9e.png" width="400"/>
-  <img src="https://user-images.githubusercontent.com/59981795/109365363-c367e100-786f-11eb-8831-1f100c0a0619.png" width="400"/>
-  <img src="https://user-images.githubusercontent.com/59981795/109365435-e85c5400-786f-11eb-8678-d0a7fefb1328.png" width="400"/>
+  <img src="https://user-images.githubusercontent.com/59981795/120333107-c090e800-c2c5-11eb-852f-22fdaaab758d.png" width="400"/>
+  <img src="https://user-images.githubusercontent.com/59981795/120333267-e6b68800-c2c5-11eb-86bb-dda0179dcf39.png" width="400"/>
+  <img src="https://user-images.githubusercontent.com/59981795/120333431-0ea5eb80-c2c6-11eb-8d5b-ca1957bcbdbf.png" width="400"/>
+  <img src="https://user-images.githubusercontent.com/59981795/120333603-3bf29980-c2c6-11eb-85a1-cc9f70e4a0ed.png" width="400"/>
+  <img src="https://user-images.githubusercontent.com/59981795/120333684-5167c380-c2c6-11eb-9c2c-37d3cef9100a.png" width="400"/>
 </h1>
 
 ## Etapas de desenvolvimento :bookmark_tabs:
@@ -115,7 +115,8 @@ Etapas:
 - [x] Adicionar comentários
 - [x] Exibir perfil do usuário da postagem
 - [x] Refatoração e correção de pequenos bugs
-- [ ] Deploy
+- [x] Redesenhar UI
+- [x] Deploy
 
 ## Créditos :star:
 Este projeto foi baseado em uma video aula fornecida pelo canal freeCampCode.org cujo link https://www.youtube.com/watch?v=m_u6P5k0vP0.<br/>Realizei algumas alterações para aprendizado, um exemplo foi utilizar a lib celebrate para validação ao invés de utilizar Helper Functions como nos videos, e ainda realizei uma reformulação no design de algumas páginas e modifiquei a paleta de cores. 
